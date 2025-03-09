@@ -8,21 +8,22 @@ const About = () => {
     <section className="flex flex-col md:flex-row items-center gap-8 p-8 w-10/12 mx-auto mt-10 mb-28">
       {/* Left Side - Images */}
       <div className="relative w-full md:w-1/2 flex justify-center">
-        <div className="relative w-[460px] h-[473px]">
+        <div className="">
           <Image
             src="/assets/images/about_us/person.jpg"
             alt="Mechanic"
-            layout="fill"
-            objectFit="cover"
-            className="rounded-xl shadow-lg"
+            width={460}
+            height={473}
+            className="rounded-lg h-[473px] w-[460px] object-cover"
           />
         </div>
-        <div className="absolute -bottom-20 right-4 w-[327px] h-[332px] bg-white rounded-[10px] shadow-lg">
+
+        <div className="absolute -bottom-20 right-4 bg-white rounded-[10px] shadow-lg">
           <Image
             src="/assets/images/about_us/parts.jpg"
             alt="Car Parts"
-            layout="fill"
-            objectFit="cover"
+            width={327}
+            height={332}
             className="p-2"
           />
         </div>

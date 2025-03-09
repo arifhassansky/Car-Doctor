@@ -1,4 +1,5 @@
 "use client";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -6,6 +7,8 @@ import { FaShoppingBag, FaSearch } from "react-icons/fa";
 
 const Navbar = () => {
   const pathname = usePathname();
+  const { status } = useSession();
+  console.log(status);
 
   return (
     <nav className="sticky top-0 pt-4 bg-white/90 z-50">
@@ -76,26 +79,42 @@ const Navbar = () => {
 
         {/* Icons and Appointment Button */}
         <div className="flex items-center gap-4">
-          <Link
-            href="/login"
-            className={`hover:text-red-500 ${
-              pathname === "/login"
-                ? "bg-red-500 text-white px-4 py-1 rounded-md hover:text-white"
-                : "text-gray-900"
-            }`}
-          >
-            Login
-          </Link>
-          <Link
-            href="/signUp"
-            className={`hover:text-red-500 ${
-              pathname === "/signUp"
-                ? "bg-red-500 text-white px-4 py-1 rounded-md hover:text-white"
-                : "text-gray-900"
-            }`}
-          >
-            SignUp
-          </Link>
+          {status === "authenticated" ? (
+            <button
+              onClick={() => signOut()}
+              className={`hover:text-red-500 ${
+                pathname === "/login"
+                  ? "bg-red-500 text-white px-4 py-1 rounded-md hover:text-white"
+                  : "text-gray-900"
+              }`}
+            >
+              Sign Out
+            </button>
+          ) : (
+            <>
+              <Link
+                href="/login"
+                className={`hover:text-red-500 ${
+                  pathname === "/login"
+                    ? "bg-red-500 text-white px-4 py-1 rounded-md hover:text-white"
+                    : "text-gray-900"
+                }`}
+              >
+                Login
+              </Link>
+              <Link
+                href="/signUp"
+                className={`hover:text-red-500 ${
+                  pathname === "/signUp"
+                    ? "bg-red-500 text-white px-4 py-1 rounded-md hover:text-white"
+                    : "text-gray-900"
+                }`}
+              >
+                SignUp
+              </Link>
+            </>
+          )}
+
           <FaShoppingBag className="text-gray-700 cursor-pointer hover:text-red-500" />
           <FaSearch className="text-gray-700 cursor-pointer hover:text-red-500" />
           <Link

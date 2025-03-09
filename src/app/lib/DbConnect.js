@@ -1,7 +1,8 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
 
-export const dbnName = {
+export const dbName = {
   servicesCollection: "Services",
+  usersCollection: "users",
 };
 
 export default async function dbConnect(collection) {
