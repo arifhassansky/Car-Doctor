@@ -8,7 +8,7 @@ const Navbar = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="sticky top-0 pt-4 bg-white/90">
+    <nav className="sticky top-0 pt-4 bg-white/90 z-50">
       <div className="flex items-center justify-between w-10/12 mx-auto">
         {/* Logo */}
         <div className="flex items-center gap-2">

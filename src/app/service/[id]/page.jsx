@@ -2,7 +2,7 @@ import dbConnect, { dbnName } from "@/app/lib/DbConnect";
 import { ObjectId } from "mongodb";
 import Image from "next/image";
 import Link from "next/link";
-import { FiFileText } from "react-icons/fi";
+import { FiFileText, FiPlayCircle } from "react-icons/fi";
 import { HiArrowRight } from "react-icons/hi";
 
 const ServiceDetails = async ({ params }) => {
@@ -38,6 +38,17 @@ const ServiceDetails = async ({ params }) => {
       {/* Main Content */}
       <section className="grid grid-cols-12 gap-8">
         <div className="col-span-8 mt-32">
+          {/* Service Image */}
+          <div>
+            <Image
+              src={"/assets/images/banner/3.jpg"}
+              className="object-cover rounded-lg w-full"
+              width={752}
+              height={100}
+              alt={"banner"}
+            />
+          </div>
+
           {/* Service Description */}
           <div className="mt-8">
             <h2 className="text-3xl font-semibold">{service?.title}</h2>
@@ -47,9 +58,12 @@ const ServiceDetails = async ({ params }) => {
           </div>
 
           {/* Facilities */}
-          <div className="mt-8 grid grid-cols-2 gap-4">
+          <div className="mt-8 grid grid-cols-2 gap-6">
             {service?.facility?.map((fac, index) => (
-              <div key={index} className="bg-gray-100 p-5 rounded-lg shadow-md">
+              <div
+                key={index}
+                className="bg-gray-100 p-5 rounded-lg shadow-md border-t-2 border-red-500"
+              >
                 <h4 className="text-lg font-semibold">{fac.name}</h4>
                 <p className="text-gray-600 text-sm mt-2">{fac.details}</p>
               </div>
@@ -57,39 +71,67 @@ const ServiceDetails = async ({ params }) => {
           </div>
 
           {/* Steps */}
-          <div className="mt-10 text-center">
-            <h3 className="text-2xl font-semibold">
-              3 Simple Steps to Process
-            </h3>
-            <p className="text-gray-600 mt-2">
-              Follow these steps to get started.
+          <div className="mt-10">
+            <h3 className="text-3xl font-bold">3 Simple Steps to Process</h3>
+            <p className="text-gray-600 mt-4 text-justify">
+              To process car service-related text, start by extracting key
+              details such as the car model, service type, appointment date, and
+              customer information. Next, categorize and organize the extracted
+              data based on maintenance history, upcoming services, and urgent
+              repairs to ensure clarity and easy access. Finally, generate a
+              well-structured summary or report, including service details and
+              costs, and share it with the customer or service team for a
+              seamless and efficient service experience.
             </p>
-            <div className="flex justify-center mt-6 gap-8">
-              {["STEP ONE", "STEP TWO", "STEP THREE"].map((step, index) => (
+
+            {/* steps */}
+            <div className="flex justify-center gap-6 mt-10">
+              {[
+                {
+                  title: "Extract Key Information",
+                  description:
+                    "Identify important details like car model, service type (oil change, tire rotation, engine check), date, and customer name.",
+                },
+                {
+                  title: "Categorize & Organize",
+                  description:
+                    "Sort the information into relevant sections, such as maintenance history, upcoming services, and urgent repairs.",
+                },
+                {
+                  title: "Generate & Share Report",
+                  description:
+                    "Format the processed data into a clear summary or invoice and share it with the customer or service team.",
+                },
+              ].map((step, index) => (
                 <div
                   key={index}
-                  className="bg-red-500 text-white px-6 py-3 rounded-full text-sm font-semibold"
+                  className="flex flex-col items-center text-center border-t-2 p-3 rounded-md border-gray-200"
                 >
-                  {step}
+                  <div className="w-20 h-20 flex items-center justify-center text-white font-bold rounded-full bg-red-500 border-10 border-red-100 shadow-md">
+                    0{index + 1}
+                  </div>
+                  <h3 className="font-bold mt-3">{step.title}</h3>
+                  <p className="text-gray-500 text-sm mt-1">
+                    {step.description}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Video Section */}
-          <div className="mt-8 relative">
-            <Image
-              src="/assets/images/video-thumbnail.jpg"
-              className="object-cover rounded-lg w-full"
-              width={800}
-              height={450}
-              alt="Video Thumbnail"
-            />
-            <div className="absolute inset-0 flex justify-center items-center">
-              <button className="bg-red-500 text-white p-4 rounded-full text-xl">
-                ▶
-              </button>
-            </div>
+          <div className="mt-8 relative mb-20">
+            <iframe
+              width="820"
+              height="415"
+              src="https://www.youtube.com/embed/VTDB3mKx7jM?si=Fyj4kxSlewkXeWb7"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+              className="rounded-lg"
+            ></iframe>
           </div>
         </div>
 
