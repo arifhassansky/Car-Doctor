@@ -1,16 +1,11 @@
-import dbConnect, { dbnName } from "@/app/lib/DbConnect";
-import { ObjectId } from "mongodb";
 import Image from "next/image";
 import Link from "next/link";
-import { FiFileText, FiPlayCircle } from "react-icons/fi";
+import { FiFileText } from "react-icons/fi";
 import { HiArrowRight } from "react-icons/hi";
 
 const ServiceDetails = async ({ params }) => {
   const param = await params;
-  const servicesCollection = await dbConnect(dbnName.servicesCollection);
-  const service = await servicesCollection.findOne({
-    _id: new ObjectId(param.id),
-  });
+  const service = `http://localhost:3000/api/service/${param}`;
 
   return (
     <div className="w-10/12 mx-auto mt-12">
@@ -126,10 +121,10 @@ const ServiceDetails = async ({ params }) => {
               height="415"
               src="https://www.youtube.com/embed/VTDB3mKx7jM?si=Fyj4kxSlewkXeWb7"
               title="YouTube video player"
-              frameborder="0"
+              frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
               className="rounded-lg"
             ></iframe>
           </div>
@@ -232,7 +227,7 @@ const ServiceDetails = async ({ params }) => {
               Price: ${service?.price}
             </h3>
             <button className="bg-red-500 w-full text-white py-2 px-6 rounded-md hover:bg-red-600">
-              <Link href={"/"} className="  ">
+              <Link href={`/checkout/${service._id}`} className="  ">
                 Proceed Checkout
               </Link>
             </button>

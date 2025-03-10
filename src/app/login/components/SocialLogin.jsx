@@ -1,15 +1,43 @@
-import { FaFacebook, FaLinkedin } from "react-icons/fa";
+"use client";
+
+import { FaFacebook, FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const SocialLogin = () => {
+  const router = useRouter();
+  const session = useSession();
+
+  const handleSocialLogin = (provider) => {
+    signIn(provider, { redirect: false });
+  };
+
+  useEffect(() => {
+    if (session?.status === "authenticated") {
+      toast.success("Login Successfull");
+      router.push("/");
+    }
+  }, [session?.status]);
+
   return (
     <div className="flex justify-center space-x-4">
+      {/* Google Login Button */}
+      <button
+        className="p-3 bg-gray-200 rounded-full hover:bg-gray-300 transition-all"
+        aria-label="Login with Google"
+        onClick={() => handleSocialLogin("google")}
+      >
+        <FcGoogle className="text-xl" />
+      </button>
+
       {/* Facebook Login Button */}
       <button
         className="p-3 bg-gray-200 rounded-full hover:bg-gray-300 transition-all"
         aria-label="Login with Facebook"
-        onClick={() => signIn("facebook")}
+        onClick={() => handleSocialLogin("facebook")}
       >
         <FaFacebook className="text-blue-600 text-xl" />
       </button>
@@ -18,18 +46,9 @@ const SocialLogin = () => {
       <button
         className="p-3 bg-gray-200 rounded-full hover:bg-gray-300 transition-all"
         aria-label="Login with LinkedIn"
-        onClick={() => signIn("linkedin")}
+        onClick={() => handleSocialLogin("linkedin")}
       >
-        <FaLinkedin className="text-blue-700 text-xl" />
-      </button>
-
-      {/* Google Login Button */}
-      <button
-        className="p-3 bg-gray-200 rounded-full hover:bg-gray-300 transition-all"
-        aria-label="Login with Google"
-        onClick={() => signIn("google")}
-      >
-        <FcGoogle className="text-xl" />
+        <FaGithub className="text-black-700 text-xl" />
       </button>
     </div>
   );
