@@ -3,10 +3,15 @@ import Link from "next/link";
 import { FiFileText } from "react-icons/fi";
 import { HiArrowRight } from "react-icons/hi";
 
+import axios from "axios";
+
 const ServiceDetails = async ({ params }) => {
   const param = await params;
-  const service = `http://localhost:3000/api/service/${param}`;
 
+  const { data: service } = await axios(
+    `http://localhost:3000/api/service/${param.id}`
+  );
+  console.log(service);
   return (
     <div className="w-10/12 mx-auto mt-12">
       {/* Details Banner */}

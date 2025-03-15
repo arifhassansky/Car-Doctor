@@ -1,8 +1,15 @@
 import CheckoutForm from "@/componenets/CheckoutForm";
+import axios from "axios";
 import Image from "next/image";
 import React from "react";
 
-const CheckOutPage = () => {
+const CheckOutPage = async ({ params }) => {
+  const param = await params;
+
+  const { data: service } = await axios(
+    `http://localhost:3000/api/service/${param.id}`
+  );
+
   return (
     <div className="w-10/12 mx-auto mt-8">
       {/* Checkout Banner */}
@@ -24,7 +31,7 @@ const CheckOutPage = () => {
         </div>
       </section>
 
-      <CheckoutForm />
+      <CheckoutForm service={service} />
     </div>
   );
 };

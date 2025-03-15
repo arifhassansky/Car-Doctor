@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { GoArrowRight } from "react-icons/go";
-import dbConnect, { dbName } from "../lib/DbConnect";
+import dbConnect, { dbName } from "../../lib/DbConnect";
 
 const Services = async () => {
   const servicesCollection = await dbConnect(dbName.servicesCollection);

@@ -51,6 +51,9 @@ const Navbar = () => {
                 <Link href="/contact">Contact</Link>
               </li>
               <li>
+                <Link href="/my-bookings">My Bookings</Link>
+              </li>
+              <li>
                 <Link
                   href="/login"
                   className={
@@ -147,6 +150,18 @@ const Navbar = () => {
                 }
               >
                 Contact
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/my-bookings"
+                className={
+                  pathname === "/my-bookings"
+                    ? "bg-red-500 text-white px-4 py-1 rounded-md hover:text-white"
+                    : "hover:text-red-500"
+                }
+              >
+                My Bookings
               </Link>
             </li>
           </ul>

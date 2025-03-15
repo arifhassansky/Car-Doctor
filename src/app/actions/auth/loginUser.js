@@ -1,5 +1,5 @@
 "use server";
-import dbConnect, { dbName } from "@/app/lib/DbConnect";
+import dbConnect, { dbName } from "@/lib/DbConnect";
 import bcrypt from "bcrypt";
 
 const LoginUser = async (payload) => {
