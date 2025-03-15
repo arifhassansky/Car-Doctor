@@ -1,5 +1,5 @@
+import MyBookingBtn from "@/app/my-bookings/components/MyBookingBtn";
 import Image from "next/image";
-import { FaTrash } from "react-icons/fa";
 
 const MyBookingTable = ({ bookings }) => {
   return (
@@ -32,7 +32,7 @@ const MyBookingTable = ({ bookings }) => {
                 <td>{booking.date}</td>
                 <td>{booking.service_price}</td>
                 <th className="text-red-500 pl-8">
-                  <FaTrash size={15} />
+                  <MyBookingBtn id={booking._id} />
                 </th>
               </tr>
             ))}
