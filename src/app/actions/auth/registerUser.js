@@ -18,6 +18,7 @@ const registerUser = async (payload) => {
   payload.password = hashedPassword;
 
   const result = await userCollection.insertOne(payload);
+  result.insertedId.toString();
   return result;
 };
 export default registerUser;

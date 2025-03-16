@@ -2,17 +2,21 @@
 import registerUser from "@/app/actions/auth/registerUser";
 import SocialLogin from "@/app/login/components/SocialLogin";
 import Link from "next/link";
+import toast from "react-hot-toast";
 
 const RegisterForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const form = e.target;
-    const name = form.name.value;
-    const email = form.email.value;
-    const password = form.password.value;
+    // Access values directly from input fields
+    const name = e.target.name.value.trim();
+    const email = e.target.email.value.trim();
+    const password = e.target.password.value.trim();
+
     const res = await registerUser({ name, email, password });
-    console.log(res);
+    if (res) {
+      toast.success("User registered successfully. Please login.");
+    }
   };
 
   return (
@@ -25,6 +29,7 @@ const RegisterForm = () => {
           name="name"
           placeholder="Your name"
           className="w-full p-3 border border-gray-300 rounded-lg my-3"
+          required
         />
         <label>Email</label>
         <input
@@ -32,6 +37,7 @@ const RegisterForm = () => {
           name="email"
           placeholder="Your email"
           className="w-full p-3 border border-gray-300 rounded-lg my-3"
+          required
         />
         <label>Password</label>
         <input
@@ -39,6 +45,8 @@ const RegisterForm = () => {
           name="password"
           placeholder="Your password"
           className="w-full p-3 border border-gray-300 rounded-lg my-3"
+          required
+          minLength={6}
         />
         <button
           type="submit"
