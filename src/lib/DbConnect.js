@@ -7,7 +7,7 @@ export const dbName = {
 };
 
 export default async function dbConnect(collection) {
-  const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.koweo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+  const uri = process.env.NEXT_PUBLIC_MONGODB_URI;
 
   const client = new MongoClient(uri, {
     serverApi: {

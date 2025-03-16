@@ -7,9 +7,12 @@ import { FaTrash } from "react-icons/fa";
 const MyBookingBtn = ({ id }) => {
   const router = useRouter();
   const handleDelete = async (id) => {
-    const res = await fetch(`http://localhost:3000/api/service/${id}`, {
-      method: "DELETE",
-    });
+    const res = await fetch(
+      `https://car-doctor-wheat.vercel.app/api/service/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
     const data = await res.json();
     if (data?.deletedCount > 0) {
       router.refresh();

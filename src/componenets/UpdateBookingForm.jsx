@@ -18,7 +18,7 @@ const UpdateBookingForm = ({ service }) => {
     };
 
     const res = await fetch(
-      `http://localhost:3000/api/my-bookings/${service._id}`,
+      `https://car-doctor-wheat.vercel.app/api/my-bookings/${service._id}`,
       {
         method: "PATCH",
         body: JSON.stringify(paypload),

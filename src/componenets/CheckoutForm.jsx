@@ -21,7 +21,7 @@ const CheckoutForm = ({ service }) => {
       service_price: form.amount.value,
     };
 
-    const res = await fetch("http://localhost:3000/api/service", {
+    const res = await fetch("https://car-doctor-wheat.vercel.app/api/service", {
       method: "POST",
 
       body: JSON.stringify(paypload),

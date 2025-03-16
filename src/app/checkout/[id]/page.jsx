@@ -7,7 +7,7 @@ const CheckOutPage = async ({ params }) => {
   const param = await params;
 
   const { data: service } = await axios(
-    `http://localhost:3000/api/service/${param.id}`
+    `https://car-doctor-wheat.vercel.app/api/service/${param.id}`
   );
 
   return (

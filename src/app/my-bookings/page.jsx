@@ -2,8 +2,8 @@ import { headers } from "next/headers";
 import MyBookingTable from "../components/table/MyBookingTable";
 
 const fetchMyBookings = async () => {
-  const res = await fetch("http://localhost:3000/api/service", {
-    headers: await headers(),
+  const res = await fetch("https://car-doctor-wheat.vercel.app/api/service", {
+    headers: new Headers(await headers()),
   });
   const data = await res.json();
   return data;
