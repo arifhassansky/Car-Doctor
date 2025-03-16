@@ -1,5 +1,7 @@
 import MyBookingBtn from "@/app/my-bookings/components/MyBookingBtn";
 import Image from "next/image";
+import Link from "next/link";
+import { FaEdit } from "react-icons/fa";
 
 const MyBookingTable = ({ bookings }) => {
   return (
@@ -13,6 +15,8 @@ const MyBookingTable = ({ bookings }) => {
               <th>Service Name</th>
               <th>Date</th>
               <th>Price</th>
+              <th>Phone</th>
+              <th>Address</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -31,9 +35,16 @@ const MyBookingTable = ({ bookings }) => {
                 <td>{booking.service_name}</td>
                 <td>{booking.date}</td>
                 <td>{booking.service_price}</td>
-                <th className="text-red-500 pl-8">
+                <td>{booking.phone}</td>
+                <td>{booking.address}</td>
+
+                <td className="text-red-500 pl-6 flex items-center gap-4 cursor-pointer">
+                  <Link href={`/my-bookings/${booking._id}`}>
+                    <FaEdit size={20} />
+                  </Link>
+
                   <MyBookingBtn id={booking._id} />
-                </th>
+                </td>
               </tr>
             ))}
           </tbody>

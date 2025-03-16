@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 import { FaTrash } from "react-icons/fa";
 
 const MyBookingBtn = ({ id }) => {
@@ -10,7 +11,10 @@ const MyBookingBtn = ({ id }) => {
       method: "DELETE",
     });
     const data = await res.json();
-    router.refresh();
+    if (data?.deletedCount > 0) {
+      router.refresh();
+      toast.success("Booking deleted successfully");
+    }
   };
 
   return (
